@@ -1,0 +1,10 @@
+plugin.tx_lwenetmultipleactionforms {
+	view {
+		# cat=plugin.tx_lwenetmultipleactionforms/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:lw_enet_multiple_action_forms/Resources/Private/Templates/
+		# cat=plugin.tx_lwenetmultipleactionforms/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:lw_enet_multiple_action_forms/Resources/Private/Partials/
+		# cat=plugin.tx_lwenetmultipleactionforms/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:lw_enet_multiple_action_forms/Resources/Private/Layouts/
+	}
+}

@@ -1,0 +1,34 @@
+config.tx_extbase {
+	objects {
+		Tx_LwEnetMultipleActionForms_Session_AdapterInterface {
+			className = Tx_LwEnetMultipleActionForms_Session_Typo3SessionAdapter
+		}
+		Tx_Extbase_Validation_ValidatorResolver {
+			className = Tx_LwEnetMultipleActionForms_Validation_ValidatorResolver
+		}
+		Tx_Extbase_Validation_Validator_GenericObjectValidator {
+			className = Tx_LwEnetMultipleActionForms_Validation_Validator_GenericObjectValidator
+		}
+	}
+	mvc {
+		requestHandlers {
+			Tx_LwEnetMultipleActionForms_MVC_Web_FrontendRequestHandler = Tx_LwEnetMultipleActionForms_MVC_Web_FrontendRequestHandler
+			Tx_LwEnetMultipleActionForms_MVC_Web_BackendRequestHandler = Tx_LwEnetMultipleActionForms_MVC_Web_BackendRequestHandler
+		}
+	}
+}
+
+plugin.tx_lwenetmultipleactionforms {
+	view {
+		templateRootPath = {$plugin.tx_lwenetmultipleactionforms.view.templateRootPath}
+		partialRootPath = {$plugin.tx_lwenetmultipleactionforms.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_lwenetmultipleactionforms.view.layoutRootPath}
+	}
+	persistence {
+
+	}
+	settings {
+		persistOnActionBack = 0
+	}
+}
+
