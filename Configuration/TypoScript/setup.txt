@@ -3,6 +3,9 @@ config.tx_extbase {
 		Tx_LwEnetMultipleActionForms_Session_AdapterInterface {
 			className = Tx_LwEnetMultipleActionForms_Session_Typo3SessionAdapter
 		}
+		Tx_Extbase_MVC_Web_Request {
+			className = Tx_LwEnetMultipleActionForms_MVC_Web_Request
+		}
 		Tx_Extbase_Validation_ValidatorResolver {
 			className = Tx_LwEnetMultipleActionForms_Validation_ValidatorResolver
 		}

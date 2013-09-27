@@ -73,16 +73,22 @@ class Tx_LwEnetMultipleActionForms_MVC_Web_FrontendRequestHandler extends Tx_Ext
 		$requestHashService = $this->objectManager->get('Tx_Extbase_Security_Channel_RequestHashService'); // singleton
 		$requestHashService->verifyRequest($this->request);
 
-		if ($this->isCacheable($this->request->getControllerName(), $this->request->getControllerActionName())) {
-			$this->request->setIsCached(TRUE);
+		if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(t3lib_extMgm::getExtensionVersion('extbase')) < t3lib_utility_VersionNumber::convertVersionNumberToInteger('4.7.0')) {
+			$this->request->setIsCached(
+				$this->isCacheable($this->request->getControllerName(), $this->request->getControllerActionName())
+			);
 		} else {
+			$this->request->setIsCached(
+				$this->extensionService->isActionCacheable(NULL, NULL, $this->request->getControllerName(), $this->request->getControllerActionName())
+			);
+		}
+		if (!$this->request->isCached()) {
 			$contentObject = $this->configurationManager->getContentObject();
 			if ($contentObject->getUserObjectType() === tslib_cObj::OBJECTTYPE_USER) {
 				$contentObject->convertToUserIntObject();
 				// tslib_cObj::convertToUserIntObject() will recreate the object, so we have to stop the request here
 				return;
 			}
-			$this->request->setIsCached(FALSE);
 		}
 		$response = $this->objectManager->create('Tx_Extbase_MVC_Web_Response');
 
@@ -90,7 +96,7 @@ class Tx_LwEnetMultipleActionForms_MVC_Web_FrontendRequestHandler extends Tx_Ext
 			// This commented debug is committed by purpose, please do net remove
 		//debug($this->request->getArguments(), 'Incoming arguments', __FILE__, __LINE__);
 
-		if ($this->request->hasArgument('__referrer')) {
+		if ($this->request->hasReferrerArgument()) {
 			$persistedControllerData = $this->sessionAdapter->load($this->request->getControllerObjectName());
 
 				// Debug data coming from session

@@ -66,7 +66,7 @@ class Tx_LwEnetMultipleActionForms_MVC_Web_BackendRequestHandler extends Tx_Extb
 			/** @var $response Tx_Extbase_MVC_Web_Response */
 		$response = $this->objectManager->create('Tx_Extbase_MVC_Web_Response');
 
-		if ($this->request->hasArgument('__referrer')) {
+		if ($this->request->hasReferrerArgument()) {
 			$persistedControllerData = $this->sessionAdapter->load($this->request->getControllerObjectName());
 			if (count($persistedControllerData) > 0) {
 				foreach ($persistedControllerData['Arguments'] as $argumentName => $argumentValue) {

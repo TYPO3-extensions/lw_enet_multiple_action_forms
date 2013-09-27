@@ -306,7 +306,7 @@ abstract class Tx_LwEnetMultipleActionForms_MVC_Controller_AbstractController ex
 	 * @return void
 	 */
 	public function persistArgumentsWithReferrerCheck(array $arguments) {
-		if (!$this->request->hasArgument('__referrer')) {
+		if (!$this->request->hasReferrerArgument()) {
 			return;
 		}
 
@@ -512,8 +512,8 @@ abstract class Tx_LwEnetMultipleActionForms_MVC_Controller_AbstractController ex
 			}
 		}
 
-		if ($this->request->hasArgument('__referrer')) {
-			$referrer = $this->request->getArgument('__referrer');
+		if ($this->request->hasReferrerArgument()) {
+			$referrer = $this->request->getReferrerArgument();
 			$this->forward($referrer['actionName'], $referrer['controllerName'], $referrer['extensionName'], $this->request->getArguments());
 		}
 

@@ -241,8 +241,8 @@ class Tx_LwEnetMultipleActionForms_Service_ActionSequence implements t3lib_Singl
 	 */
 	public function getReferrerAction() {
 		$referrer = NULL;
-		if ($this->request->hasArgument('__referrer')) {
-			$referrer = $this->request->getArgument('__referrer');
+		if ($this->request->hasReferrerArgument()) {
+			$referrer = $this->request->getReferrerArgument();
 		}
 		return $this->getActionByActionName($referrer['actionName']);
 	}
