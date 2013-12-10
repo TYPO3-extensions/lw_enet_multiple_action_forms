@@ -109,7 +109,9 @@ class Tx_LwEnetMultipleActionForms_MVC_Web_FrontendRequestHandler extends Tx_Ext
 						$argument = $this->request->getArgument($argumentName);
 						$argument = t3lib_div::array_merge_recursive_overrule(
 							$argumentValue,
-							$argument
+							$argument,
+							FALSE,
+							FALSE
 						);
 						$this->request->setArgument($argumentName, $argument);
 					} else {
